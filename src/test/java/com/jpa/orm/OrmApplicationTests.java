@@ -35,7 +35,7 @@ public class OrmApplicationTests {
 //        kota1.setId(1);
 //        kota1.setNama("GUNUNGKIDUL");
         kec.setKota(kotaDao.getOne(1));
-        kecamatanDao.save(kec);
+//        kecamatanDao.save(kec);
 
         System.out.println(kecamatanDao.findAll().toString());
         System.out.println(kotaDao.findAll().toString());

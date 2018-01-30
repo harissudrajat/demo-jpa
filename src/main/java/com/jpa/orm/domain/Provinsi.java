@@ -15,7 +15,7 @@ public class Provinsi {
     @Column(unique = true)
     private String nama;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "ref_prov_kab",
             joinColumns = {@JoinColumn(name = "prov_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "kab_id", referencedColumnName = "id")})
@@ -24,8 +24,9 @@ public class Provinsi {
     public Provinsi() {
     }
 
-    public Provinsi(String nama) {
+    public Provinsi(String nama, List<Kabupaten> kabupaten) {
         this.nama = nama;
+        this.kabupaten = kabupaten;
     }
 
     public Integer getId() {
