@@ -14,25 +14,34 @@ import java.util.Map;
 public class ProvinsiController {
 
     @Autowired
-    private ProvinsiServiceImpl provinsiService;
+    ProvinsiServiceImpl provinsiService;
 
     @GetMapping(value = "")
-    public Map findAll(){
+    public Map findAll() {
         return provinsiService.findAll();
     }
 
     @PostMapping(value = "/save")
-    public Map create(@RequestBody Provinsi prov){
-        return provinsiService.createProvinsi(prov);
+    public Map create(@RequestBody Provinsi prov) {
+//        Map m = new HashMap();
+        if (prov.getId() == null) {
+            return provinsiService.create(prov);
+        } else {
+            return provinsiService.update(prov);
+        }
     }
 
     @PostMapping(value = "/find")
-    public Map find(@RequestBody Find find){
-        Map m = new HashMap();
-        if (find.getKey().equals("id")){
+    public Map find(@RequestBody Find find) {
+        if (find.getKey().equals("id")) {
             return provinsiService.findOne(find);
         } else {
             return null;
         }
+    }
+
+    @DeleteMapping(value = "/delete")
+    public void find(@RequestBody Provinsi prov) {
+        provinsiService.delete(prov);
     }
 }
