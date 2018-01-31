@@ -15,7 +15,7 @@ public class Provinsi {
     @Column(unique = true)
     private String nama;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "ref_prov_kab",
             joinColumns = {@JoinColumn(name = "prov_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "kab_id", referencedColumnName = "id")})

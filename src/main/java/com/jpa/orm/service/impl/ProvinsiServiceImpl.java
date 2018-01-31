@@ -49,20 +49,33 @@ public class ProvinsiServiceImpl implements ProvinsiService {
             m.put("RESPONS", "01");
             m.put("MESSAGE", "GAGAL MENYIMPAN");
         }
+        log.info("LOG UPDATE PROV: " + m);
         return m;
     }
 
     @Override
-    public void delete(Provinsi prov) {
-        try {
-            if (prov.getId() != null) {
-                provDao.delete(prov);
+    public Map delete(Integer id) {
+        Map m = new HashMap();
+        if (id == null) {
+            m.put("RESPONS", "02");
+            m.put("MESSAGE", "ID EMPTY");
+            log.info("LOG DELETE PROV: " + m);
+            return m;
+        } else {
+            Provinsi prov = provDao.findOne(id);
+            if (prov == null) {
+                m.put("RESPONS", "01");
+                m.put("MESSAGE", "PROVINSI NOT FOUND");
+                log.info("LOG DELETE PROV: " + m);
+                return m;
+            } else {
+                provDao.delete(id);
+                m.put("RESPONS", "00");
+                m.put("MESSAGE", "SUKSES");
+                log.info("LOG DELETE PROV: " + m);
+                return m;
             }
-        } catch (Exception e) {
-            String message = e.getMessage();
-            log.info(message);
         }
-
     }
 
     @Override
@@ -73,7 +86,6 @@ public class ProvinsiServiceImpl implements ProvinsiService {
         if (findAll.isEmpty()) {
             m.put("RESPONS", "00");
             m.put("MESSAGE", "DATA KOSONG");
-            m.put("DATA", null);
         } else {
             m.put("RESPONS", "01");
             m.put("MESSAGE", "DATA DITEMUKAN");
@@ -94,7 +106,7 @@ public class ProvinsiServiceImpl implements ProvinsiService {
                 m.put("DATA", provs);
             } else {
                 m.put("RESPONS", "01");
-                m.put("MESSAGE", "ID " + find.getValue() + " TIDAK DITEMUKAN");
+                m.put("MESSAGE", "ID: " + find.getValue() + " TIDAK DITEMUKAN");
             }
         } else {
             m.put("RESPONS", "02");

@@ -6,7 +6,6 @@ import com.jpa.orm.service.impl.ProvinsiServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -23,7 +22,6 @@ public class ProvinsiController {
 
     @PostMapping(value = "/save")
     public Map create(@RequestBody Provinsi prov) {
-//        Map m = new HashMap();
         if (prov.getId() == null) {
             return provinsiService.create(prov);
         } else {
@@ -41,7 +39,11 @@ public class ProvinsiController {
     }
 
     @DeleteMapping(value = "/delete")
-    public void find(@RequestBody Provinsi prov) {
-        provinsiService.delete(prov);
+    public Map delete(@RequestBody Find find) {
+        if (find.getId() == null) {
+            return null;
+        } else {
+            return provinsiService.delete(find.getId());
+        }
     }
 }

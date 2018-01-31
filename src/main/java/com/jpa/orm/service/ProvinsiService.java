@@ -7,13 +7,13 @@ import java.util.Map;
 
 public interface ProvinsiService {
 
+    Map findAll();
+
+    Map findOne(Find find);
+
     Map create(Provinsi prov);
 
     Map update(Provinsi prov);
 
-    void delete(Provinsi prov);
-
-    Map findOne(Find find);
-
-    Map findAll();
+    Map delete(Integer id);
 }

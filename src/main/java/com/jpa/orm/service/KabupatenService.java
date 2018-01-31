@@ -7,9 +7,15 @@ import java.util.Map;
 
 public interface KabupatenService {
 
-    Map createKabupaten(Kabupaten kab);
+    Map create(Kabupaten kab);
+
+    Map update(Kabupaten kab);
 
     Map findAll();
 
     Map findById(Find find);
+
+    Map findByNama(Find find);
+
+    Map delete(Integer id);
 }

@@ -2,12 +2,15 @@ package com.jpa.orm.domain;
 
 public class Find {
 
+    private Integer id;
     private String key;
     private String value;
 
-    public Find(){}
+    public Find() {
+    }
 
-    public Find(String key, String value) {
+    public Find(Integer id, String key, String value) {
+        this.id = id;
         this.key = key;
         this.value = value;
     }
@@ -28,10 +31,19 @@ public class Find {
         this.value = value;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "Find{" +
-                "key='" + key + '\'' +
+                "id=" + id +
+                ", key='" + key + '\'' +
                 ", value='" + value + '\'' +
                 '}';
     }
