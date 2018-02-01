@@ -1,6 +1,7 @@
 package com.jpa.orm.domain;
 
 import javax.persistence.*;
+import javax.persistence.Id;
 
 @Entity
 @Table(name = "kecamatan")

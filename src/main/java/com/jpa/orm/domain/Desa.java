@@ -1,24 +1,29 @@
 package com.jpa.orm.domain;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
-import javax.persistence.Id;
+import java.util.List;
 
 @Entity
-@Table(name = "kabupaten")
-public class Kabupaten {
+@Table(name = "desa")
+public class Desa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-
-    @Column(unique = true)
     private String nama;
 
-    public Kabupaten() {
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "desa_id", insertable = false)
+    private List<Dusun> dusuns;
+
+    public Desa() {
     }
 
-    public Kabupaten(String nama) {
+    public Desa(String nama, List<Dusun> dusuns) {
         this.nama = nama;
+        this.dusuns = dusuns;
     }
 
     public Integer getId() {
@@ -37,12 +42,20 @@ public class Kabupaten {
         this.nama = nama;
     }
 
+    public List<Dusun> getDusuns() {
+        return dusuns;
+    }
+
+    public void setDusuns(List<Dusun> dusuns) {
+        this.dusuns = dusuns;
+    }
+
     @Override
     public String toString() {
-        return "Kabupaten{" +
+        return "Desa{" +
                 "id=" + id +
                 ", nama='" + nama + '\'' +
+                ", dusuns=" + dusuns +
                 '}';
     }
 }
-

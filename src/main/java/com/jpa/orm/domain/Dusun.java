@@ -1,23 +1,20 @@
 package com.jpa.orm.domain;
 
 import javax.persistence.*;
-import javax.persistence.Id;
 
 @Entity
-@Table(name = "kabupaten")
-public class Kabupaten {
+@Table(name = "dusun")
+public class Dusun {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-
-    @Column(unique = true)
     private String nama;
 
-    public Kabupaten() {
+    public Dusun() {
     }
 
-    public Kabupaten(String nama) {
+    public Dusun(String nama) {
         this.nama = nama;
     }
 
@@ -39,10 +36,9 @@ public class Kabupaten {
 
     @Override
     public String toString() {
-        return "Kabupaten{" +
+        return "Dusun{" +
                 "id=" + id +
                 ", nama='" + nama + '\'' +
                 '}';
     }
 }
-

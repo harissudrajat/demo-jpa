@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface KecamatanDao extends JpaRepository<Kecamatan, Integer> {
-    List<Kecamatan> findByKota(Kota kota);
+//    List<Kecamatan> findByKota(Kota kota);
 
 }
