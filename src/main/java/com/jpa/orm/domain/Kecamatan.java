@@ -2,6 +2,7 @@ package com.jpa.orm.domain;
 
 import javax.persistence.*;
 import javax.persistence.Id;
+import java.util.List;
 
 @Entity
 @Table(name = "kecamatan")
@@ -12,17 +13,20 @@ public class Kecamatan {
     private Integer id;
     private String nama;
 
-    @ManyToOne
-    @JoinColumn(name = "kota_id", referencedColumnName = "id", nullable = false)
-    private Kota kota;
+//    @ManyToOne
+//    @JoinColumn(name = "kota_id", referencedColumnName = "id", nullable = false)
+//    private Kota kota;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "kec_id", referencedColumnName = "id", nullable = false)
+    private List<Desa> desa;
 
     public Kecamatan() {
     }
 
-    public Kecamatan(Integer id, String nama, Kota kota) {
-        this.id = id;
+    public Kecamatan(String nama, List<Desa> desa) {
         this.nama = nama;
-        this.kota = kota;
+        this.desa = desa;
     }
 
     public Integer getId() {
@@ -41,12 +45,12 @@ public class Kecamatan {
         this.nama = nama;
     }
 
-    public Kota getKota() {
-        return kota;
+    public List<Desa> getDesa() {
+        return desa;
     }
 
-    public void setKota(Kota kota) {
-        this.kota = kota;
+    public void setDesa(List<Desa> desa) {
+        this.desa = desa;
     }
 
     @Override
@@ -54,7 +58,7 @@ public class Kecamatan {
         return "Kecamatan{" +
                 "id=" + id +
                 ", nama='" + nama + '\'' +
-                ", kota=" + kota +
+                ", desa=" + desa +
                 '}';
     }
 }

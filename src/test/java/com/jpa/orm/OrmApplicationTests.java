@@ -38,6 +38,47 @@ public class OrmApplicationTests {
     DusunDao dusunDao;
 
     @Test
+    public void Test() {
+        Kecamatan kec = new Kecamatan();
+        Desa desa = new Desa();
+        Dusun dusun = new Dusun();
+
+        List<Desa> desas = new ArrayList<>();
+        List<Dusun> dusuns = new ArrayList<>();
+
+        kec.setNama("PLAYEN");
+        desa.setNama("LOGANDENG");
+        dusun.setNama("SIYONO KIDUL");
+
+        desas.add(desa);
+        dusuns.add(dusun);
+
+        kec.setDesa(desas);
+        desa.setDusuns(dusuns);
+
+        System.out.println("save kecamatan: " + kecamatanDao.save(kec));
+        System.out.println("list: " + kecamatanDao.findAll());
+    }
+
+    @Test
+    public void AddDusun() {
+        Dusun dusun = new Dusun();
+        Desa desa = new Desa();
+
+        dusun.setNama("SIYONO KULON");
+        List<Dusun> dusuns = new ArrayList<>();
+        dusuns.add(dusun);
+
+        desa.setId(1);
+        desa.setNama("LOGANDENG");
+        desa.setDusuns(dusuns);
+
+        System.out.println("ADD DUSUN: " + desaDao.save(desa));
+        System.out.println("LIST DESA: " + desaDao.findAll());
+        System.out.println("LIST KECAMATAN: " + kecamatanDao.findAll());
+    }
+
+    /*@Test
     public void Kecamatan() {
 //        Kota kota = new Kota();
 //        kota.setNama("GUNUNGKIDUL");
@@ -57,7 +98,7 @@ public class OrmApplicationTests {
         System.out.println(kecamatanDao.findAll().toString());
         System.out.println(kotaDao.findAll().toString());
 
-       /* Kota k1 = new Kota();
+       *//* Kota k1 = new Kota();
         k1.setId(1);
         k1.setNama("GUNUNGKIDUL");
 
@@ -65,7 +106,7 @@ public class OrmApplicationTests {
         k2.setId(2);
         k2.setNama("BANTUL");
         System.out.println(kecamatanDao.findByKota(k1).toString());
-        System.out.println(kecamatanDao.findByKota(k2).toString());*/
+        System.out.println(kecamatanDao.findByKota(k2).toString());*//*
     }
 
     @Test
@@ -117,19 +158,20 @@ public class OrmApplicationTests {
 
     @Test
     public void Find() {
-        System.out.println("LIST DESA: " + desaDao.findAll().toString());
-        System.out.println("LIST DUSUN: " + dusunDao.findAll().toString());
+//        System.out.println("LIST DESA: " + desaDao.findAll().toString());
+//        System.out.println("LIST DUSUN: " + dusunDao.findAll().toString());
+//        System.out.println("LIST DUSUN: " + dusunDao.findByIdDusun(1));
     }
 
     @Test
     public void update(){
         Desa ds = new Desa();
-        ds.setId(4);
+        ds.setId(1);
         ds.setNama("LOGANDENG");
 
         Dusun dsn = new Dusun();
-        dsn.setId(2);
-        dsn.setNama("SIYONO KULON");
+//        dsn.setId(1);
+        dsn.setNama("SIYONO KIDUL 4");
         List<Dusun> dusuns = new ArrayList<>();
         dusuns.add(dsn);
         ds.setDusuns(dusuns);
@@ -145,5 +187,5 @@ public class OrmApplicationTests {
         dusun.setNama("BARU");
 
         dusunDao.save(dusun);
-    }
+    }*/
 }

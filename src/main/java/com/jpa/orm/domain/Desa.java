@@ -14,8 +14,8 @@ public class Desa {
     private Integer id;
     private String nama;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "desa_id", insertable = false)
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "desa_id", referencedColumnName = "id", nullable = false)
     private List<Dusun> dusuns;
 
     public Desa() {
